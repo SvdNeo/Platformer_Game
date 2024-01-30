@@ -9,3 +9,79 @@ canvas.height = innerHeight;
 const gravity = 0.5;
 let isCheckpointCollisionDetectionActive = true;
 
+class Player {
+    constructor() {
+      this.position = {
+        x: 10,
+        y: 400,
+      };
+      this.velocity = {
+        x: 0,
+        y: 0,
+      };
+      this.width = 40;
+      this.height = 40;
+    }
+    draw() {
+      ctx.fillStyle = "#99c9ff";
+      ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    }
+    
+    update() {
+      this.draw();
+      this.position.x += this.velocity.x;
+      this.position.y += this.velocity.y;
+  
+      if (this.position.y + this.height + this.velocity.y <= canvas.height) {
+        if (this.position.y < 0) {
+          this.position.y = 0;
+          this.velocity.y = gravity;
+        }
+        this.velocity.y += gravity;
+      } else {
+        this.velocity.y = 0;
+      }
+  
+      if (this.position.x < this.width) {
+        this.position.x = this.width;
+      }
+    }
+  }
+  
+  class Platform {
+    constructor(x, y) {
+      this.position = {
+        x,
+        y,
+      };
+      this.width = 200;
+      this.height = 40;
+    }
+    draw() {
+      ctx.fillStyle = "#acd157";
+      ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    }
+  }
+  
+  class CheckPoint {
+    constructor(x, y) {
+      this.position = {
+        x,
+        y,
+      };
+      this.width = 40;
+      this.height = 70;
+    };
+  
+    draw() {
+      ctx.fillStyle = "#f1be32";
+      ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
+    }
+    claim() {
+      this.width = 0;
+      this.height = 0;
+      this.position.y = Infinity;
+    }
+  };
+  
+  
