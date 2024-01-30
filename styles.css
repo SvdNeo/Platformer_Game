@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  :root {
+    --main-bg-color: #0a0a23;
+    --section-bg-color: #ffffff;
+    --golden-yellow: #feac32;
+  }
+  
+  body {
+    background-color: var(--main-bg-color);
+  }
+  
